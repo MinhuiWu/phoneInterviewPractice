@@ -19,7 +19,7 @@ public class LPS{
 	}
 	
 	
-	public String expand(String str, String left, String right) {
+	public String expand(String str, int left, int right) {
 		int lefttmp = left;
 		int righttmp = right;
 		while (left >= 0 && right < str.length() && str.charAt(left) == str.charAt(right)) {
