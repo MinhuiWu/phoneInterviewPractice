@@ -8,10 +8,11 @@ public class LPS{
 		String lps = str.substring(0,1);
 		
 		for (int i = 0; i < str.length() - 1; i++) {
-			//the middle is the elements of the string
+			//the middel is the space between elements of the string
 			String tmp = expand(str, i, i + 1);
 			lps = tmp.length() > lps.length() ? tmp : lps;   
-			//the middel is the space between elements of the string
+		
+			//the middle is the elements of the string
 			String tmp = expand(str, i , i);
 			lps = tmp.length() > lps.length() ? tmp : lps;
 		}
