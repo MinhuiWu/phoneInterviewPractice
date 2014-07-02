@@ -28,44 +28,33 @@ public class LevelTraversal{
 	
 	
 	//iterative BFS method
-	public ArrayList<ArrayList<Integer>> levelOrderBFS(TreeNode root){
-		ArrayList<ArrayList<Integer>> ans = new ArrayList<ArrayList<Integer>>();
-		if (root == null)  return ans;
-		
-		Queue queue = new LinkedList<TreeNode>();
-		queue.add(root);
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		list.add(root.value);
-		int currentLevel = 1;
-		int nextLevel = 0;
-		
-		while (!queue.isEmpty()) {			
-			TreeNode node = queue.remove();
-			list.add(node.value);
-			currentLevel--;
-			
-			for (TreeNode node : queue){
-				if (node.left != null) {
-					list.add(node.left.value);
-					queue.add(node.left);
-					nextLevel++;
-				} 
-				if (node.right != null)	{
-					list.add(node.right.value);
-					queue.add(node.right);
-					nextLevel++;
-				} 
-			}
-			
-			if (currentLevel == 0) {
-				currentLevel = nextLevel;
-				nextLevel = 0;
-				ans.add(list);			
-			}				
-		}
-		return ans;		
-	}
+public ArrayList<LinkedList<TreeNode>> levelOrder(TreeNode root) {
+	ArrayList<LinkedList<TreeNode>>  result = new ArrayList<LinkedList<TreeNode>();
+	if (root == null)  return result;
 	
+	//visit the root
+	Queue<TreeNode> queue = new LinkedList<TreeNode>();
+	queue.add(root);
+		
+	while (! queue.isEmpty()) {
+		Queue<TreeNode> nextQueue = new LinkedList<TreeNode>();
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		while( !queue.isEmpty()){
+			TreeNode node = queue.poll();
+			list.add(node);
+			if (node.left != null) {
+				nextQueue.add(node.left)
+			}	
+			if (node.right != null) {
+				nextQueue.add(node.right);
+			}
+		result.add(list);
+		queue.addAll(nextQueue);
+		nextQueue = new LinkedList<TreeNode>();
+		}
+	return result;
+	}	
+}
 		
 		
 	//recursive method
